@@ -2,7 +2,7 @@
 
 > WIP
 
-WordPress Customer Plugin Bootstrapper. Elda loades files and register the [wp-autoload](https://github.com/frozzare/wp-autoload). Default Elda looks for code in `src` directory in your plugin directory, this can be changed with `src_dir` in options array.
+Simple WordPress Plugin Bootstrapper. Elda loades files and register the [wp-autoload](https://github.com/frozzare/wp-autoload). Default Elda looks for code in `src` directory in your plugin directory, this can be changed with `src_dir` in options array.
 
 ## Example
 
@@ -10,7 +10,7 @@ WordPress Customer Plugin Bootstrapper. Elda loades files and register the [wp-a
 /**
  * Plugin Name: Customer
  * Description: Customer description
- * Author: Name
+ * Author: Customer
  * Author URI: http://example.com
  * Version: 1.0.0
  * Textdomain: customer
