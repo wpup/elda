@@ -233,7 +233,7 @@ class Elda {
             throw new InvalidArgumentException( 'Invalid argument. `files` must be array.' );
         }
 
-        $this->options->files = array_filter( $files, function ( $file ) {
+        $this->options->files = array_filter( $this->options->files, function ( $file ) {
             return is_string( $file ) && file_exists( $this->get_src_path( $file ) );
         } );
     }
