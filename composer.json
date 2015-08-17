@@ -1,7 +1,7 @@
 {
   "name": "frozzare/elda",
   "license": "MIT",
-  "description": "WordPress Customer Plugin Loader",
+  "description": "WordPress Customer Plugin Bootstrapper",
   "homepage": "https://github.com/frozzare/elda",
   "authors": [
     {
