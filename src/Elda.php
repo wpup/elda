@@ -70,9 +70,11 @@ class Elda {
 
         $instance = self::$instances[$name];
 
-        return add_action( 'plugins_loaded', function () use( $instance ) {
+        add_action( 'plugins_loaded', function () use( $instance ) {
             return $instance;
         } );
+
+        return $instance;
     }
 
     /**
