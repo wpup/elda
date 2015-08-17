@@ -28,7 +28,7 @@ class Elda {
      */
      protected $options = [
         'files'     => [],
-        'instance'  => null,
+        'instance'  => '',
         'namespace' => '',
         'src_dir'   => 'src'
     ];
@@ -95,7 +95,7 @@ class Elda {
      * @return object
      */
     public function get_instance() {
-        if ( is_null( $this->options->instance ) ) {
+        if ( empty( $this->options->instance ) ) {
             return $this;
         }
 
@@ -164,7 +164,7 @@ class Elda {
         $name = plugin_basename( $base_path );
 
         if ( ! isset( self::$instances[$name] ) ) {
-            throw new InvalidArgumentException( sprintf( 'Identifier `%s` is not defined', $name ) )
+            throw new InvalidArgumentException( sprintf( 'Identifier `%s` is not defined', $name ) );
         }
 
         return self::$instances[$name];

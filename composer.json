@@ -36,6 +36,7 @@
     "frozzare/wp-autoload": "~2.0"
   },
   "require-dev": {
+    "frozzare/wp-test-suite": "~1.0",
     "wp-coding-standards/wpcs": "dev-develop"
   },
   "scripts": {

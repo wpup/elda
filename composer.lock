@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f61c97875ec0212df04fca77e050db94",
+    "hash": "84e2cd530000c2256555870b02f816cf",
     "packages": [
         {
             "name": "composer/installers",
@@ -157,7 +157,7 @@
         },
         {
             "name": "frozzare/wp-autoload",
-            "version": "dev-master",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/frozzare/wp-autoload.git",
@@ -1096,6 +1096,49 @@
     ],
     "packages-dev": [
         {
+            "name": "frozzare/wp-test-suite",
+            "version": "v1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/frozzare/wp-test-suite.git",
+                "reference": "a71239f81c16433ad2cd08374499d08c0627f903"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/frozzare/wp-test-suite/zipball/a71239f81c16433ad2cd08374499d08c0627f903",
+                "reference": "a71239f81c16433ad2cd08374499d08c0627f903",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3",
+                "phpunit/phpunit": "~4.6"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/class-wp-test-suite.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fredrik Forsmo",
+                    "email": "fredrik.forsmo@gmail.com"
+                }
+            ],
+            "description": "Run WordPress test easy",
+            "keywords": [
+                "easy",
+                "suite",
+                "test",
+                "wordpress"
+            ],
+            "time": "2015-07-27 09:33:20"
+        },
+        {
             "name": "squizlabs/php_codesniffer",
             "version": "2.3.3",
             "source": {
@@ -1175,12 +1218,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git",
-                "reference": "5a3f332207b48a9e7d49f307f95f42c1c8c48cc0"
+                "reference": "6438687cb9878b663d5b9f11b383b4141bf86f0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/5a3f332207b48a9e7d49f307f95f42c1c8c48cc0",
-                "reference": "5a3f332207b48a9e7d49f307f95f42c1c8c48cc0",
+                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/6438687cb9878b663d5b9f11b383b4141bf86f0a",
+                "reference": "6438687cb9878b663d5b9f11b383b4141bf86f0a",
                 "shasum": ""
             },
             "require": {
@@ -1203,13 +1246,12 @@
                 "standards",
                 "wordpress"
             ],
-            "time": "2015-08-04 19:07:34"
+            "time": "2015-08-17 18:13:11"
         }
     ],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "frozzare/wp-autoload": 20,
         "wp-coding-standards/wpcs": 20
     },
     "prefer-stable": true,
