@@ -25,6 +25,7 @@ class Elda {
      */
      protected $options = [
         'files'     => [],
+        'instance'  => null,
         'namespace' => '',
         'src_dir'   => 'src'
     ];
@@ -64,7 +65,7 @@ class Elda {
         $name = plugin_basename( $base_path );
 
         if ( ! isset( self::$instances[$name] ) ) {
-            self::$instances[$name] = new self( $base_path, $options );
+            self::$instances[$name] = new self( $base_path, $options )->get_instance();
         }
 
         $instance = self::$instances[$name];
@@ -83,6 +84,19 @@ class Elda {
         $this->options->files = array_filter( $files, function ( $file ) {
             return file_exists( $this->get_src_path( $file ) );
         } );
+    }
+
+    /**
+     * Get instance.
+     *
+     * @return object
+     */
+    public function get_instance() {
+        if ( is_null( $this->options->instance ) ) {
+            return $this;
+        }
+
+        return $this->options->instance;
     }
 
     /**
