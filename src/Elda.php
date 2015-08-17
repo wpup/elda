@@ -12,6 +12,13 @@ class Elda {
     protected $base_path;
 
     /**
+     * Instances of booted plugins.
+     *
+     * @var array
+     */
+    protected static $instances = [];
+
+    /**
      * Elda options.
      *
      * @var array
@@ -23,16 +30,23 @@ class Elda {
     ];
 
     /**
+     * The plugin name.
+     *
+     * @var string
+     */
+    protected $plugin_name;
+
+    /**
      * The constructor.
      *
      * @param string $base_path
      * @param array $options
      */
     protected function __construct( $base_path, array $options = [] ) {
-        $this->base_path = $base_path;
-        $this->options   = array_merge( $this->options, $options );
-        $this->options   = (object) $this->options;
+        $this->options = array_merge( $this->options, $options );
+        $this->options = (object) $this->options;
 
+        $this->set_base_path( $base_path );
         $this->load_composer();
         $this->register_autoload();
         $this->load_files();
@@ -47,8 +61,16 @@ class Elda {
      * @return \Frozzare\Elda\Elda
      */
     public static function boot( $base_path, array $options = [] ) {
-        add_action( 'plugins_loaded', function () {
-            return new self( $base_path, $options );
+        $name = plugin_basename( $base_path );
+
+        if ( ! isset( self::$instances[$name] ) ) {
+            self::$instances[$name] = new self( $base_path, $options );
+        }
+
+        $instance = self::$instances[$name];
+
+        return add_action( 'plugins_loaded', function () use( $instance ) {
+            return $instance;
         } );
     }
 
@@ -71,7 +93,7 @@ class Elda {
      * @return string
      */
     protected function get_path( $path ) {
-        return rtrim( $this->base_path, '/' ) . '/' . $path;
+        return $this->base_path . '/' . $path;
     }
 
     /**
@@ -117,6 +139,23 @@ class Elda {
         if ( file_exists( $src_dir ) ) {
             register_wp_autoload( $this->options->namespace, $src_dir );
         }
+    }
+
+    /**
+     * Set base path. Remove file name if it exists.
+     *
+     * @param string $base_path
+     */
+    protected function set_base_path( $base_path ) {
+        if ( ! is_string( $base_path ) ) {
+            throw new InvalidArgumentException( 'Invalid argument. `$base_path` must be string.' );
+        }
+
+        if ( strpos( $base_path, '.php' ) !== false ) {
+            $base_path = preg_replace( '/[^\/]*$/', '', $base_path );
+        }
+
+        $this->base_path = rtrim( $base_path, '/' );
     }
 
 }

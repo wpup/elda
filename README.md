@@ -21,7 +21,7 @@ use Frozzare\Elda\Elda;
 /**
  * Bootstrap Customer plugin with Elda.
  */
-Elda::boot( __DIR__, [
+Elda::boot( __FILE__, [
     'files'     => [
       'lib/papi.php'
     ],
