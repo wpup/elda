@@ -47,7 +47,9 @@ class Elda {
      * @return \Frozzare\Elda\Elda
      */
     public static function boot( $base_path, array $options = [] ) {
-        return new self( $base_path, $options );
+        add_action( 'plugins_loaded', function () {
+            return new self( $base_path, $options );
+        } );
     }
 
     /**
