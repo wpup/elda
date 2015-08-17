@@ -65,7 +65,7 @@ class Elda {
         $name = plugin_basename( $base_path );
 
         if ( ! isset( self::$instances[$name] ) ) {
-            self::$instances[$name] = new self( $base_path, $options )->get_instance();
+            self::$instances[$name] = ( new self( $base_path, $options ) )->get_instance();
         }
 
         $instance = self::$instances[$name];
@@ -93,7 +93,7 @@ class Elda {
      */
     public function get_instance() {
         if ( is_null( $this->options->instance ) ) {
-            return $this;
+            return call_user_func( $this->options->instance );
         }
 
         return $this->options->instance;
