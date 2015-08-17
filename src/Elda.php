@@ -81,17 +81,6 @@ class Elda {
     }
 
     /**
-     * Add files that should be loaded.
-     *
-     * @param array $files
-     */
-    public function files( array $files ) {
-        $this->options->files = array_filter( $files, function ( $file ) {
-            return is_string( $file ) && file_exists( $this->get_src_path( $file ) );
-        } );
-    }
-
-    /**
      * Get instance.
      *
      * @return object
@@ -243,6 +232,10 @@ class Elda {
         if ( ! is_array( $this->options->files ) ) {
             throw new InvalidArgumentException( 'Invalid argument. `files` must be array.' );
         }
+
+        $this->options->files = array_filter( $files, function ( $file ) {
+            return is_string( $file ) && file_exists( $this->get_src_path( $file ) );
+        } );
     }
 
 }
