@@ -2,6 +2,9 @@
 
 namespace Frozzare\Elda;
 
+use Exception;
+use InvalidArgumentException;
+
 class Elda {
 
     /**
@@ -44,10 +47,8 @@ class Elda {
      * @param array $options
      */
     protected function __construct( $base_path, array $options = [] ) {
-        $this->options = array_merge( $this->options, $options );
-        $this->options = (object) $this->options;
-
         $this->set_base_path( $base_path );
+        $this->set_options( $options );
         $this->load_composer();
         $this->register_autoload();
         $this->load_files();
@@ -84,7 +85,7 @@ class Elda {
      */
     public function files( array $files ) {
         $this->options->files = array_filter( $files, function ( $file ) {
-            return file_exists( $this->get_src_path( $file ) );
+            return is_string( $file ) && file_exists( $this->get_src_path( $file ) );
         } );
     }
 
@@ -95,10 +96,14 @@ class Elda {
      */
     public function get_instance() {
         if ( is_null( $this->options->instance ) ) {
-            return call_user_func( $this->options->instance );
+            return $this;
         }
 
-        return $this->options->instance;
+        if ( ! is_callable( $this->options->instance ) ) {
+            throw new Exception( sprintf( '`%s` is not callable', $this->options->instance ) );
+        }
+
+        return call_user_func( $this->options->instance );
     }
 
     /**
@@ -172,6 +177,49 @@ class Elda {
         }
 
         $this->base_path = rtrim( $base_path, '/' );
+    }
+
+    /**
+     * Set namespace if instance exists and namespace is empty.
+     */
+    protected function set_namespace() {
+        if ( empty( $this->options->instance ) || ! empty( $this->options->namespace ) ) {
+            return;
+        }
+
+        $namespace = $this->options->instance;
+        $namespace = explode( '\\', $namespace );
+        array_pop( $namespace );
+
+        $this->options->namespace = implode( '\\', $namespace );
+    }
+
+    /**
+     * Set options.
+     *
+     * @param array $options
+     */
+    protected function set_options( array $options ) {
+        $this->options = array_merge( $this->options, $options );
+        $this->options = (object) $this->options;
+
+        if ( ! is_string( $this->options->instance ) ) {
+            throw new InvalidArgumentException( 'Invalid argument. `instance` must be string.' );
+        }
+
+        $this->set_namespace();
+
+        if ( ! is_string( $this->options->namespace ) ) {
+            throw new InvalidArgumentException( 'Invalid argument. `namespace` must be string.' );
+        }
+
+        if ( ! is_string( $this->options->src_dir ) ) {
+            throw new InvalidArgumentException( 'Invalid argument. `src_dir` must be string.' );
+        }
+
+        if ( ! is_array( $this->options->files ) ) {
+            throw new InvalidArgumentException( 'Invalid argument. `files` must be array.' );
+        }
     }
 
 }
