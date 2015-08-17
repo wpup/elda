@@ -22,7 +22,7 @@ $ composer require frozzare/elda
  * Textdomain: customer
  */
 
-use Frozzare\WordPress\Elda;
+use Frozzare\Elda\Elda;
 
 /**
  * Bootstrap Customer plugin with Elda.
