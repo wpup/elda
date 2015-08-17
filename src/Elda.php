@@ -152,6 +152,25 @@ class Elda {
     }
 
     /**
+     * Get the instance from base path.
+     *
+     * @param string $base_path
+     *
+     * @throws InvalidArgumentException when plugin instance don't exists.
+     *
+     * @return object
+     */
+    public static function make( $base_path ) {
+        $name = plugin_basename( $base_path );
+
+        if ( ! isset( self::$instances[$name] ) ) {
+            throw new InvalidArgumentException( sprintf( 'Identifier `%s` is not defined', $name ) )
+        }
+
+        return self::$instances[$name];
+    }
+
+    /**
      * Register autoload.
      */
     protected function register_autoload() {
