@@ -8,6 +8,17 @@ WordPress Customer Plugin Bootstrapper. Elda loades files and register the [wp-a
 
 ```php
 /**
+ * Plugin Name: Customer
+ * Description: Customer description
+ * Author: Name
+ * Author URI: http://example.com
+ * Version: 1.0.0
+ * Textdomain: customer
+ */
+
+use Frozzare\Elda\Elda;
+
+/**
  * Bootstrap Customer plugin with Elda.
  */
 Elda::boot( __DIR__, [
