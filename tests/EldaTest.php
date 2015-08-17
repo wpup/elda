@@ -110,6 +110,14 @@ class EldaTest extends \WP_UnitTestCase {
         } catch ( \InvalidArgumentException $e ) {
             $this->assertEquals( 'Invalid argument. `src_dir` must be string.', $e->getMessage() );
         }
+
+        try {
+            Elda::boot( __DIR__, [
+                'files' => false
+            ] );
+        } catch ( \InvalidArgumentException $e ) {
+            $this->assertEquals( 'Invalid argument. `files` must be array.', $e->getMessage() );
+        }
     }
 
 }

@@ -71,9 +71,11 @@ class Elda {
 
         $instance = self::$instances[$name];
 
+        // @codeCoverageIgnoreEnd
         add_action( 'plugins_loaded', function () use( $instance ) {
             return $instance;
         } );
+        // @codeCoverageIgnoreStart
 
         return $instance;
     }
@@ -135,9 +137,11 @@ class Elda {
     protected function load_composer() {
         $path = $this->get_path( 'vendor/autoload.php' );
 
+        // @codeCoverageIgnoreStart
         if ( file_exists( $path ) ) {
             require_once $path;
         }
+        // @codeCoverageIgnoreEnd
     }
 
     /**
