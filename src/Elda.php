@@ -71,11 +71,11 @@ class Elda {
 
         $instance = self::$instances[$name];
 
-        // @codeCoverageIgnoreEnd
+        // @codeCoverageIgnoreStart
         add_action( 'plugins_loaded', function () use( $instance ) {
             return $instance;
         } );
-        // @codeCoverageIgnoreStart
+        // @codeCoverageIgnoreEnd
 
         return $instance;
     }
