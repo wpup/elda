@@ -28,7 +28,7 @@ class Elda {
      */
      protected $options = [
         'files'     => [],
-        'instance'  => null,
+        'instance'  => '',
         'namespace' => '',
         'src_dir'   => 'src'
     ];
@@ -71,22 +71,13 @@ class Elda {
 
         $instance = self::$instances[$name];
 
+        // @codeCoverageIgnoreStart
         add_action( 'plugins_loaded', function () use( $instance ) {
             return $instance;
         } );
+        // @codeCoverageIgnoreEnd
 
         return $instance;
-    }
-
-    /**
-     * Add files that should be loaded.
-     *
-     * @param array $files
-     */
-    public function files( array $files ) {
-        $this->options->files = array_filter( $files, function ( $file ) {
-            return is_string( $file ) && file_exists( $this->get_src_path( $file ) );
-        } );
     }
 
     /**
@@ -95,7 +86,7 @@ class Elda {
      * @return object
      */
     public function get_instance() {
-        if ( is_null( $this->options->instance ) ) {
+        if ( empty( $this->options->instance ) ) {
             return $this;
         }
 
@@ -135,9 +126,11 @@ class Elda {
     protected function load_composer() {
         $path = $this->get_path( 'vendor/autoload.php' );
 
+        // @codeCoverageIgnoreStart
         if ( file_exists( $path ) ) {
             require_once $path;
         }
+        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -164,7 +157,7 @@ class Elda {
         $name = plugin_basename( $base_path );
 
         if ( ! isset( self::$instances[$name] ) ) {
-            throw new InvalidArgumentException( sprintf( 'Identifier `%s` is not defined', $name ) )
+            throw new InvalidArgumentException( sprintf( 'Identifier `%s` is not defined', $name ) );
         }
 
         return self::$instances[$name];
@@ -239,6 +232,10 @@ class Elda {
         if ( ! is_array( $this->options->files ) ) {
             throw new InvalidArgumentException( 'Invalid argument. `files` must be array.' );
         }
+
+        $this->options->files = array_filter( $this->options->files, function ( $file ) {
+            return is_string( $file ) && file_exists( $this->get_src_path( $file ) );
+        } );
     }
 
 }

@@ -3,7 +3,7 @@
   backupStaticAttributes="false"
   beStrictAboutTestsThatDoNotTestAnything="true"
   beStrictAboutOutputDuringTests="true"
-  bootstrap="vendor/autoload.php"
+  bootstrap="tests/bootstrap.php"
   colors="true"
   convertErrorsToExceptions="true"
   convertNoticesToExceptions="true"
@@ -15,8 +15,9 @@
   verbose="true"
   >
   <testsuites>
-    <testsuite name="Tank Test Suite">
+    <testsuite name="Elda Test Suite">
       <directory suffix=".php">./tests/</directory>
+      <exclude>./tests/fixtures</exclude>
     </testsuite>
   </testsuites>
   <filter>
