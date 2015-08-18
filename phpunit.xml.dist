@@ -15,7 +15,7 @@
   verbose="true"
   >
   <testsuites>
-    <testsuite name="Tank Test Suite">
+    <testsuite name="Elda Test Suite">
       <directory suffix=".php">./tests/</directory>
       <exclude>./tests/fixtures</exclude>
     </testsuite>
