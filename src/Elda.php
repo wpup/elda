@@ -44,7 +44,7 @@ class Elda {
      * The constructor.
      *
      * @param string $base_path
-     * @param array $options
+     * @param array  $options
      */
     protected function __construct( $base_path, array $options = [] ) {
         $this->set_base_path( $base_path );
@@ -57,8 +57,8 @@ class Elda {
     /**
      * Boot the plugin.
      *
-     * @param string $base_path
-     * @param array $options
+     * @param  string $base_path
+     * @param  array  $options
      *
      * @return \Frozzare\Elda\Elda
      */
@@ -120,7 +120,7 @@ class Elda {
     /**
      * Get full src path to the path.
      *
-     * @param string $path
+     * @param  string $path
      *
      * @return string
      */
@@ -154,7 +154,7 @@ class Elda {
     /**
      * Get the instance from base path.
      *
-     * @param string $base_path
+     * @param  string $base_path
      *
      * @throws InvalidArgumentException when plugin instance don't exists.
      *
