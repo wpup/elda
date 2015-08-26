@@ -26,7 +26,7 @@ class Elda {
      *
      * @var array
      */
-     protected $options = [
+    protected $options = [
         'files'     => [],
         'instance'  => '',
         'namespace' => '',
@@ -60,7 +60,7 @@ class Elda {
      * @param  string $base_path
      * @param  array  $options
      *
-     * @return \Frozzare\Elda\Elda
+     * @return object
      */
     public static function boot( $base_path, array $options = [] ) {
         $name = plugin_basename( $base_path );
@@ -100,7 +100,7 @@ class Elda {
     /**
      * Get full path to the path.
      *
-     * @param string $path
+     * @param  string $path [description]
      *
      * @return string
      */
@@ -147,7 +147,7 @@ class Elda {
     /**
      * Get the instance from base path.
      *
-     * @param  string $base_path
+     * @param  strign $base_path
      *
      * @throws InvalidArgumentException when plugin instance don't exists.
      *
@@ -199,7 +199,7 @@ class Elda {
             return;
         }
 
-        $namespace = $this->options->instance;
+        $namespace = $this->options->namespace;
         $namespace = explode( '\\', $namespace );
         array_pop( $namespace );
 
@@ -233,9 +233,8 @@ class Elda {
             throw new InvalidArgumentException( 'Invalid argument. `files` must be array.' );
         }
 
-        $this->options->files = array_filter( $this->options->files, function ( $file ) {
+        $this->options->files = array_filter( $this->options->files, function( $file ) {
             return is_string( $file ) && file_exists( $this->get_src_path( $file ) );
         } );
     }
-
 }
