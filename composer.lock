@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "84e2cd530000c2256555870b02f816cf",
+    "hash": "9c9a1fa37ada10f66a2ace75d4b95dee",
     "packages": [
         {
             "name": "composer/installers",
@@ -157,20 +157,23 @@
         },
         {
             "name": "frozzare/wp-autoload",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/frozzare/wp-autoload.git",
-                "reference": "a81b9afab8a7f72cc5b038644b3e3ac48556c374"
+                "reference": "bd18f47b5e08eb1ba1228bde1fc939f1dca07e6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/frozzare/wp-autoload/zipball/a81b9afab8a7f72cc5b038644b3e3ac48556c374",
-                "reference": "a81b9afab8a7f72cc5b038644b3e3ac48556c374",
+                "url": "https://api.github.com/repos/frozzare/wp-autoload/zipball/bd18f47b5e08eb1ba1228bde1fc939f1dca07e6e",
+                "reference": "bd18f47b5e08eb1ba1228bde1fc939f1dca07e6e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
             },
             "type": "library",
             "autoload": {
@@ -194,7 +197,7 @@
                 "namespace",
                 "wordpress"
             ],
-            "time": "2015-08-11 07:39:16"
+            "time": "2015-08-18 13:56:00"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -547,16 +550,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.4",
+            "version": "4.8.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "55bf1d6092b0e13a1f26bd5eaffeef3d8ad85ea7"
+                "reference": "2246830f4a1a551c67933e4171bf2126dc29d357"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/55bf1d6092b0e13a1f26bd5eaffeef3d8ad85ea7",
-                "reference": "55bf1d6092b0e13a1f26bd5eaffeef3d8ad85ea7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2246830f4a1a551c67933e4171bf2126dc29d357",
+                "reference": "2246830f4a1a551c67933e4171bf2126dc29d357",
                 "shasum": ""
             },
             "require": {
@@ -615,24 +618,24 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-08-15 04:21:23"
+            "time": "2015-08-24 04:09:38"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.3.6",
+            "version": "2.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "18dfbcb81d05e2296c0bcddd4db96cade75e6f42"
+                "reference": "5e2645ad49d196e020b85598d7c97e482725786a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/18dfbcb81d05e2296c0bcddd4db96cade75e6f42",
-                "reference": "18dfbcb81d05e2296c0bcddd4db96cade75e6f42",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/5e2645ad49d196e020b85598d7c97e482725786a",
+                "reference": "5e2645ad49d196e020b85598d7c97e482725786a",
                 "shasum": ""
             },
             "require": {
-                "doctrine/instantiator": "~1.0,>=1.0.2",
+                "doctrine/instantiator": "^1.0.2",
                 "php": ">=5.3.3",
                 "phpunit/php-text-template": "~1.2",
                 "sebastian/exporter": "~1.2"
@@ -671,7 +674,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-07-10 06:54:24"
+            "time": "2015-08-19 09:14:08"
         },
         {
             "name": "sebastian/comparator",
@@ -1218,12 +1221,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git",
-                "reference": "6438687cb9878b663d5b9f11b383b4141bf86f0a"
+                "reference": "d5717e795899c999cdfdc7d6f454042de7501dcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/6438687cb9878b663d5b9f11b383b4141bf86f0a",
-                "reference": "6438687cb9878b663d5b9f11b383b4141bf86f0a",
+                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/d5717e795899c999cdfdc7d6f454042de7501dcf",
+                "reference": "d5717e795899c999cdfdc7d6f454042de7501dcf",
                 "shasum": ""
             },
             "require": {
@@ -1246,7 +1249,7 @@
                 "standards",
                 "wordpress"
             ],
-            "time": "2015-08-17 18:13:11"
+            "time": "2015-08-26 04:36:34"
         }
     ],
     "aliases": [],

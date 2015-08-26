@@ -12,7 +12,6 @@
     <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceBeforeOpenParenthesis" />
     <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
     <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceAfterOpenParenthesis" />
-    <exclude name="Generic.Files.LowercasedFilename.NotFound" />
   </rule>
 
   <rule ref="Generic.WhiteSpace.ScopeIndent">

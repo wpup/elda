@@ -20,14 +20,9 @@
     "issues": "https://github.com/frozzare/elda/issues"
   },
   "autoload": {
-    "psr-4": {
-      "Frozzare\\Elda\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Frozzare\\Tests\\Elda\\": "tests/"
-    }
+    "files": [
+      "src/class-elda.php"
+    ]
   },
   "require": {
     "php": ">=5.4",
