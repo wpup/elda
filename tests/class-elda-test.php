@@ -48,6 +48,12 @@ class EldaTest extends \WP_UnitTestCase {
         Elda::boot( __DIR__ . '/fixtures/acme/acme-3.php' );
 
         $this->assertEmpty( $l10n );
+
+        Elda::boot( __DIR__ . '/fixtures/acme/acme-3-1.php', [
+            'domain' => 'acme'    
+        ] );
+
+        $this->assertEmpty( $l10n );
     }
 
     public function test_load_files() {
