@@ -126,6 +126,14 @@ class EldaTest extends \WP_UnitTestCase {
 
         try {
             Elda::boot( __DIR__, [
+                'lang_dir' => false
+            ] );
+        } catch ( \InvalidArgumentException $e ) {
+            $this->assertEquals( 'Invalid argument. `lang_dir` must be string.', $e->getMessage() );
+        }
+
+        try {
+            Elda::boot( __DIR__, [
                 'namespace' => false
             ] );
         } catch ( \InvalidArgumentException $e ) {
