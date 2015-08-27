@@ -27,6 +27,7 @@ class Elda {
      * @var array
      */
     protected $options = [
+        'domain'    => '',
         'files'     => [],
         'instance'  => '',
         'namespace' => '',
@@ -49,6 +50,7 @@ class Elda {
     protected function __construct( $base_path, array $options = [] ) {
         $this->set_base_path( $base_path );
         $this->set_options( $options );
+        $this->load_textdomain();
         $this->load_composer();
         $this->register_autoload();
         $this->load_files();
@@ -145,9 +147,25 @@ class Elda {
     }
 
     /**
+     * Load textdomain.
+     */
+    protected function load_textdomain() {
+        $domain = $this->options->domain;
+
+        if ( empty( $domain ) ) {
+            return;
+        }
+
+        $path = $this->get_path( 'languages' );
+        $path = sprintf( '%s/%s-%s.mo', rtrim( $path, '/' ), $domain, get_locale() );
+
+        load_textdomain( $domain, $path );
+    }
+
+    /**
      * Get the instance from base path.
      *
-     * @param  strign $base_path
+     * @param  string $base_path
      *
      * @throws InvalidArgumentException when plugin instance don't exists.
      *
@@ -220,6 +238,10 @@ class Elda {
         }
 
         $this->set_namespace();
+
+        if ( ! is_string( $this->options->domain ) ) {
+            throw new InvalidArgumentException( 'Invalid argument. `domain` must be string.' );
+        }
 
         if ( ! is_string( $this->options->namespace ) ) {
             throw new InvalidArgumentException( 'Invalid argument. `namespace` must be string.' );

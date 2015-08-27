@@ -41,6 +41,15 @@ class EldaTest extends \WP_UnitTestCase {
         }
     }
 
+    public function test_load_textdomain() {
+        global $l10n;
+        $l10n = [];
+
+        Elda::boot( __DIR__ . '/fixtures/acme/acme-3.php' );
+
+        $this->assertEmpty( $l10n );
+    }
+
     public function test_load_files() {
         Elda::boot( __DIR__ . '/fixtures/acme/acme-3.php', [
             'files'    => [
@@ -93,6 +102,14 @@ class EldaTest extends \WP_UnitTestCase {
             ] );
         } catch ( \InvalidArgumentException $e ) {
             $this->assertEquals( 'Invalid argument. `instance` must be string.', $e->getMessage() );
+        }
+
+        try {
+            Elda::boot( __DIR__, [
+                'domain' => false
+            ] );
+        } catch ( \InvalidArgumentException $e ) {
+            $this->assertEquals( 'Invalid argument. `domain` must be string.', $e->getMessage() );
         }
 
         try {
