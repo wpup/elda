@@ -51,7 +51,7 @@ class EldaTest extends \WP_UnitTestCase {
     }
 
     public function test_load_files() {
-        Elda::boot( __DIR__ . '/fixtures/acme/acme-3.php', [
+        Elda::boot( __DIR__ . '/fixtures/acme/acme-4.php', [
             'files'    => [
                 'lib/test.php'
             ],
@@ -63,20 +63,20 @@ class EldaTest extends \WP_UnitTestCase {
     }
 
     public function test_make() {
-        Elda::boot( __DIR__ . '/fixtures/acme/acme-4.php', [
+        Elda::boot( __DIR__ . '/fixtures/acme/acme-5.php', [
             'namespace' => 'Acme\\',
             'src_dir'   => ''
         ] );
 
-        $this->assertTrue( Elda::make( __DIR__ . '/fixtures/acme/acme-4.php' ) instanceof Elda );
+        $this->assertTrue( Elda::make( __DIR__ . '/fixtures/acme/acme-5.php' ) instanceof Elda );
 
-        $acme = Elda::boot( __DIR__ . '/fixtures/acme/acme-5.php', [
+        $acme = Elda::boot( __DIR__ . '/fixtures/acme/acme-6.php', [
             'instance' => 'Acme\\Plugin_Loader::instance',
             'src_dir'  => ''
         ] );
 
         $this->assertEquals( \Acme\Plugin_Loader::instance(), $acme );
-        $this->assertEquals( \Acme\Plugin_Loader::instance(), Elda::make( __DIR__ . '/fixtures/acme/acme-5.php' ) );
+        $this->assertEquals( \Acme\Plugin_Loader::instance(), Elda::make( __DIR__ . '/fixtures/acme/acme-6.php' ) );
     }
 
     public function test_make_exception() {
