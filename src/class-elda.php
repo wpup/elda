@@ -72,7 +72,7 @@ class Elda {
 
         // @codeCoverageIgnoreStart
         add_action( 'plugins_loaded', function () use ( $instance, $name ) {
-            return static::$instances[$name] = $instance->start()->get_instance();
+            return static::$instances[$name] = $instance->load()->get_instance();
         } );
         // @codeCoverageIgnoreEnd
 
@@ -117,6 +117,17 @@ class Elda {
     protected function get_src_path( $path = '' ) {
         return rtrim( $this->get_path( $this->options->src_dir ), '/' ) .
             ( strlen( $path )  ? '/' . $path : '' );
+    }
+
+    /**
+     * Load files and textdomain.
+     *
+     * @return \Frozzare\Elda\Elda
+     */
+    protected function load() {
+        $this->load_textdomain();
+        $this->load_files();
+        return $this;
     }
 
     /**
@@ -259,16 +270,5 @@ class Elda {
         $this->options->files = array_filter( $this->options->files, function ( $file ) {
             return is_string( $file ) && file_exists( $this->get_src_path( $file ) );
         } );
-    }
-
-    /**
-     * Start all the loaders.
-     *
-     * @return \Frozzare\Elda\Elda
-     */
-    protected function start() {
-        $this->load_textdomain();
-        $this->load_files();
-        return $this;
     }
 }
