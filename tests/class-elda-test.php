@@ -11,7 +11,7 @@ class EldaTest extends \WP_UnitTestCase {
     }
 
     public function test_basic() {
-        $elda = Elda::boot( __DIR__ . '/fixtures/acme/acme-1.php', [
+        Elda::boot( __DIR__ . '/fixtures/acme/acme-1.php', [
             'namespace' => 'Acme\\',
             'src_dir'   => ''
         ] );
@@ -19,7 +19,6 @@ class EldaTest extends \WP_UnitTestCase {
         do_action( 'plugins_loaded' );
 
         $this->assertTrue( \Acme\Plugin_Loader::instance() instanceof \Acme\Plugin_Loader );
-        $this->assertTrue( $elda->get_instance() instanceof Elda );
     }
 
     public function test_with_instance() {
@@ -38,7 +37,7 @@ class EldaTest extends \WP_UnitTestCase {
      * @expectedExceptionMessage `Acme\Plugin_Loader::instance2` is not callable
      */
     public function test_with_instance_exception() {
-        $acme = Elda::boot( __DIR__ . '/fixtures/acme/acme-2-1.php', [
+        Elda::boot( __DIR__ . '/fixtures/acme/acme-2-1.php', [
             'instance' => 'Acme\\Plugin_Loader::instance2',
             'src_dir'  => ''
         ] );
@@ -93,20 +92,32 @@ class EldaTest extends \WP_UnitTestCase {
 
         $this->assertTrue( Elda::make( __DIR__ . '/fixtures/acme/acme-5.php' ) instanceof Elda );
 
-        $acme = Elda::boot( __DIR__ . '/fixtures/acme/acme-6.php', [
+        Elda::boot( __DIR__ . '/fixtures/acme/acme-6.php', [
             'instance' => 'Acme\\Plugin_Loader::instance',
             'src_dir'  => ''
         ] );
 
         do_action( 'plugins_loaded' );
 
-        $this->assertTrue( $acme instanceof Elda );
         $this->assertEquals( Elda::make( __DIR__ . '/fixtures/acme/acme-6.php' ), \Acme\Plugin_Loader::instance() );
+    }
+
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Cannot boot `wp-elda/tests/fixtures/acme/acme-6.php` again
+     */
+    public function test_boot_exception() {
+        Elda::boot( __DIR__ . '/fixtures/acme/acme-6.php', [
+            'instance' => 'Acme\\Plugin_Loader::instance',
+            'src_dir'  => ''
+        ] );
+
+        do_action( 'plugins_loaded' );
     }
 
     public function test_make_exception() {
         try {
-            $acme = Elda::make( __FILE__ );
+            Elda::make( __FILE__ );
         } catch ( \Exception $e ) {
             $this->assertEquals( sprintf( 'Identifier `%s` is not defined', plugin_basename( __FILE__ ) ), $e->getMessage() );
         }

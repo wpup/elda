@@ -65,7 +65,7 @@ class Elda {
         $name = plugin_basename( $base_path );
 
         if ( isset( static::$instances[$name] ) ) {
-            return;
+            throw new Exception( sprintf( 'Cannot boot `%s` again', $name ) );
         }
 
         $instance = new static( $base_path, $options );
@@ -75,8 +75,6 @@ class Elda {
             return static::$instances[$name] = $instance->load()->get_instance();
         } );
         // @codeCoverageIgnoreEnd
-
-        return $instance;
     }
 
     /**
