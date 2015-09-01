@@ -100,7 +100,7 @@ class EldaTest extends \WP_UnitTestCase {
 
         do_action( 'plugins_loaded' );
 
-        $this->assertTrue( $acme instanceof Elda  );
+        $this->assertTrue( $acme instanceof Elda );
         $this->assertEquals( Elda::make( __DIR__ . '/fixtures/acme/acme-6.php' ), \Acme\Plugin_Loader::instance() );
     }
 

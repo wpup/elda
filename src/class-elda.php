@@ -71,7 +71,7 @@ class Elda {
         $instance = new static( $base_path, $options );
 
         // @codeCoverageIgnoreStart
-        add_action( 'plugins_loaded', function () use( $instance, $name ) {
+        add_action( 'plugins_loaded', function () use ( $instance, $name ) {
             return static::$instances[$name] = $instance->start()->get_instance();
         } );
         // @codeCoverageIgnoreEnd
@@ -256,7 +256,7 @@ class Elda {
             throw new InvalidArgumentException( 'Invalid argument. `files` must be array.' );
         }
 
-        $this->options->files = array_filter( $this->options->files, function( $file ) {
+        $this->options->files = array_filter( $this->options->files, function ( $file ) {
             return is_string( $file ) && file_exists( $this->get_src_path( $file ) );
         } );
     }
