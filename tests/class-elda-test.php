@@ -104,7 +104,6 @@ class EldaTest extends \WP_UnitTestCase {
 
     /**
      * @expectedException Exception
-     * @expectedExceptionMessage Cannot boot `wp-elda/tests/fixtures/acme/acme-6.php` again
      */
     public function test_boot_exception() {
         Elda::boot( __DIR__ . '/fixtures/acme/acme-6.php', [
