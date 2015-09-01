@@ -133,10 +133,10 @@ class EldaTest extends \WP_UnitTestCase {
     public function test_options_exceptions() {
         try {
             Elda::boot( __DIR__, [
-                'instance' => false
+                'action' => false
             ] );
         } catch ( \InvalidArgumentException $e ) {
-            $this->assertEquals( 'Invalid argument. `instance` must be string.', $e->getMessage() );
+            $this->assertEquals( 'Invalid argument. `action` must be string.', $e->getMessage() );
         }
 
         try {
@@ -145,6 +145,14 @@ class EldaTest extends \WP_UnitTestCase {
             ] );
         } catch ( \InvalidArgumentException $e ) {
             $this->assertEquals( 'Invalid argument. `domain` must be string.', $e->getMessage() );
+        }
+
+        try {
+            Elda::boot( __DIR__, [
+                'instance' => false
+            ] );
+        } catch ( \InvalidArgumentException $e ) {
+            $this->assertEquals( 'Invalid argument. `instance` must be string.', $e->getMessage() );
         }
 
         try {

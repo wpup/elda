@@ -27,6 +27,7 @@ class Elda {
      * @var array
      */
     protected $options = [
+        'action'    => 'plugins_loaded',
         'domain'    => '',
         'files'     => [],
         'instance'  => '',
@@ -74,10 +75,19 @@ class Elda {
         $instance = new static( $base_path, $options );
 
         // @codeCoverageIgnoreStart
-        add_action( 'plugins_loaded', function () use ( $instance, $name ) {
+        add_action( $instance->get_action(), function () use ( $instance, $name ) {
             return static::$instances[$name] = $instance->load_files()->get_instance();
         } );
         // @codeCoverageIgnoreEnd
+    }
+
+    /**
+     * Get action.
+     *
+     * @return string
+     */
+    public function get_action() {
+        return $this->options->action;
     }
 
     /**
@@ -238,6 +248,10 @@ class Elda {
         }
 
         $this->set_namespace();
+
+        if ( ! is_string( $this->options->action ) ) {
+            throw new InvalidArgumentException( 'Invalid argument. `action` must be string.' );
+        }
 
         if ( ! is_string( $this->options->domain ) ) {
             throw new InvalidArgumentException( 'Invalid argument. `domain` must be string.' );
