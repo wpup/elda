@@ -51,6 +51,7 @@ class Elda {
     protected function __construct( $base_path, array $options = [] ) {
         $this->set_base_path( $base_path );
         $this->set_options( $options );
+        $this->load_textdomain();
         $this->load_composer();
         $this->register_autoload();
     }
@@ -60,6 +61,8 @@ class Elda {
      *
      * @param  string $base_path
      * @param  array  $options
+     *
+     * @throws Exception if plugin is loaded
      */
     public static function boot( $base_path, array $options = [] ) {
         $name = plugin_basename( $base_path );
@@ -72,7 +75,7 @@ class Elda {
 
         // @codeCoverageIgnoreStart
         add_action( 'plugins_loaded', function () use ( $instance, $name ) {
-            return static::$instances[$name] = $instance->load()->get_instance();
+            return static::$instances[$name] = $instance->load_files()->get_instance();
         } );
         // @codeCoverageIgnoreEnd
     }
@@ -118,17 +121,6 @@ class Elda {
     }
 
     /**
-     * Load files and textdomain.
-     *
-     * @return \Frozzare\Elda\Elda
-     */
-    protected function load() {
-        $this->load_textdomain();
-        $this->load_files();
-        return $this;
-    }
-
-    /**
      * Load Composer autoload if it exists.
      */
     protected function load_composer() {
@@ -150,6 +142,8 @@ class Elda {
         }
 
         unset( $file );
+
+        return $this;
     }
 
     /**
