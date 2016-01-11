@@ -32,6 +32,7 @@ class Elda {
         'files'     => [],
         'instance'  => '',
         'lang_dir'  => 'languages',
+        'lang_path' => '',
         'namespace' => '',
         'src_dir'   => 'src'
     ];
@@ -166,7 +167,12 @@ class Elda {
             return;
         }
 
-        $path = $this->get_path( $this->options->lang_dir );
+        $path = $this->options->lang_path;
+
+        if ( empty( $path ) ) {
+            $path = $this->get_path( $this->options->lang_dir );
+        }
+
         $path = sprintf( '%s/%s-%s.mo', rtrim( $path, '/' ), $domain, get_locale() );
 
         load_textdomain( $domain, $path );
@@ -259,6 +265,10 @@ class Elda {
 
         if ( ! is_string( $this->options->lang_dir ) ) {
             throw new InvalidArgumentException( 'Invalid argument. `lang_dir` must be string.' );
+        }
+
+        if ( ! is_string( $this->options->lang_path ) ) {
+            throw new InvalidArgumentException( 'Invalid argument. `lang_path` must be string.' );
         }
 
         if ( ! is_string( $this->options->namespace ) ) {
