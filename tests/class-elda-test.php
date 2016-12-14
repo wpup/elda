@@ -50,7 +50,7 @@ class EldaTest extends \WP_UnitTestCase {
 
         Elda::boot( __DIR__ . '/fixtures/acme/acme-3.php' );
 
-        $this->assertNotEmpty( $l10n );
+        $this->assertEmpty( $l10n );
 
         Elda::boot( __DIR__ . '/fixtures/acme/acme-3-1.php', [
             'domain' => 'acme'
