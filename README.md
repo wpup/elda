@@ -7,7 +7,7 @@ Simple WordPress Plugin Bootstrapper. Elda loades files and register the [wp-aut
 ## Install
 
 ```
-$ composer require frozzare/elda
+composer require frozzare/elda
 ```
 
 ## Example
