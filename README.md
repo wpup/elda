@@ -1,6 +1,8 @@
 # elda
 
-[![Build Status](https://travis-ci.org/wpup/elda.svg?branch=master)](https://travis-ci.org/wpup/elda)  [![codecov.io](http://codecov.io/github/wpup/elda/coverage.svg?branch=master)](http://codecov.io/github/wpup/elda?branch=master)
+[![Build Status](https://travis-ci.org/wpup/elda.svg?branch=master)](https://travis-ci.org/wpup/elda)
+[![codecov.io](http://codecov.io/github/wpup/elda/coverage.svg?branch=master)](http://codecov.io/github/wpup/elda?branch=master)
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 Simple WordPress Plugin Bootstrapper. Elda loades files and register the [wp-autoload](https://github.com/wpup/autoload). Default Elda looks for code in `src` directory in your plugin directory, this can be changed with `src_dir` in options array.
 
